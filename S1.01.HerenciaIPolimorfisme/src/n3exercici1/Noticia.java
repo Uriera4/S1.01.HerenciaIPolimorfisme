@@ -11,10 +11,6 @@ public abstract class Noticia {
 
     public Noticia (String titular){
         this.titular = titular;
-        text = "";
-        puntuacio = 0;
-        preu = 0;
-        competicio = "";
     }
 
     public String getTitular(){

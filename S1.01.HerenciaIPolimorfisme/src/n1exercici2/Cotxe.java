@@ -1,14 +1,17 @@
 package n1exercici2;
 public class Cotxe {
-    final static String MARCA = "Opel";
-    static String model;
-    final public double potencia;
+    final private static String MARCA = "Opel";
+    private static String model;
+    final private double potencia;
 
     public Cotxe (String model, double potencia){
-        Cotxe.model = model;
+        inicialitzaModel(model);
         this.potencia = potencia;
     }
 
+    private static void inicialitzaModel (String model){
+        Cotxe.model = model;
+    }
     public static void frenar(){
         System.out.println("El vehícle està frenant");
     }
