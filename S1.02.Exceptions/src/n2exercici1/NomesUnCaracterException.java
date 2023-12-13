@@ -1,9 +1,8 @@
 package n2exercici1;
 
-public class NomesUnCaracter extends Exception{
-    public NomesUnCaracter () {
-    }
-    public NomesUnCaracter (String missatge){
+public class NomesUnCaracterException extends Exception{
+
+    public NomesUnCaracterException (String missatge){
         super (missatge);
     }
 }

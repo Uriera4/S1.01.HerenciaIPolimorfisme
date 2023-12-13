@@ -1,9 +1,8 @@
 package n3exercici1;
 
-public class ExcepcioNomPersonalIncorrecte extends Exception{
+public class ExcepcioNomPersonaIncorrecte extends Exception{
 
-    public ExcepcioNomPersonalIncorrecte(){}
-    public ExcepcioNomPersonalIncorrecte (String message){
+    public ExcepcioNomPersonaIncorrecte(String message){
         super(message);
     }
 }
