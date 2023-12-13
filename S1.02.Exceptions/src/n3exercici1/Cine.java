@@ -181,7 +181,7 @@ public class Cine {
     }
 
     //MÉTODES AMB ELS TRY-CATCH
-    public int OpcioMenu (int opcio){
+    private int OpcioMenu (int opcio){
         boolean correcte = false;
         do {
             try {
@@ -193,35 +193,35 @@ public class Cine {
         } while (!correcte);
         return opcio;
     }
-    public void opcioMostrarButaques(){
+    private void opcioMostrarButaques(){
         try {
             mostrarButaques();
         } catch (ExcepcioNoHiHaReserves error) {
             System.out.println(error.getMessage());
         }
     }
-    public void opcioMostrarButaquesPersona (){
+    private void opcioMostrarButaquesPersona (){
         try {
             mostrarButaquesPersona();
         } catch (ExcepcioNoHiHaReserves error){
             System.out.println(error.getMessage());
         }
     }
-    public void opcioAnularReserva (){
+    private void opcioAnularReserva (){
         try {
             anularReserva();
         } catch (ExcepcioNoHiHaReserves error){
             System.out.println(error.getMessage());
         }
     }
-    public void opcioAnularReservaPersona (){
+    private void opcioAnularReservaPersona (){
         try {
             anularReservaPersona();
         } catch (ExcepcioNoHiHaReserves error){
             System.out.println(error.getMessage());
         }
     }
-    public String demanarIntroduirPersona (){
+    private String demanarIntroduirPersona (){
         String nomPersona = "";
         boolean correcte = false;
         do {
@@ -234,7 +234,7 @@ public class Cine {
         }while(!correcte);
         return nomPersona;
     }
-    public int demanarIntroduirFila (){
+    private int demanarIntroduirFila (){
         int numeroFila = 1;
         boolean correcte = false;
         do {
@@ -247,7 +247,7 @@ public class Cine {
         }while(!correcte);
         return numeroFila;
     }
-    public int demanaIntroduirSeient (){
+    private int demanaIntroduirSeient (){
         int numeroSeient = 1;
         boolean correcte = false;
         do{
@@ -260,7 +260,7 @@ public class Cine {
         }while(!correcte);
         return numeroSeient;
     }
-    public boolean opcioAfegirButaca (int numeroFila, int numeroSeient, String nomPersona){
+    private boolean opcioAfegirButaca (int numeroFila, int numeroSeient, String nomPersona){
         boolean reservat = false;
         try {
             novaGestio.afegirButaca(new Butaca(numeroFila, numeroSeient, nomPersona));
@@ -270,7 +270,7 @@ public class Cine {
         }
         return reservat;
     }
-    public void opcioEliminarButaca (int numeroFila, int numeroSeient){
+    private void opcioEliminarButaca (int numeroFila, int numeroSeient){
         try {
             novaGestio.eliminarButaca(numeroFila, numeroSeient);
             avisEliminacio(numeroFila, numeroSeient);
@@ -278,7 +278,7 @@ public class Cine {
             System.out.println(error.getMessage());
         }
     }
-    public void opcioEliminarButacaPersona (int i, String nomPersona){
+    private void opcioEliminarButacaPersona (int i, String nomPersona){
         try{
             novaGestio.eliminarButaca(novaGestio.getButaques().get(i).getNombreDeFila(), novaGestio.getButaques().get(i).getNombreDeSeient());
             avisEliminacions(nomPersona);
@@ -286,10 +286,10 @@ public class Cine {
             System.out.println(error.getMessage());
         }
     }
-    public void avisEliminacio (int numeroFila, int numeroSeient){
+    private void avisEliminacio (int numeroFila, int numeroSeient){
         System.out.println("La butaca amb Fila: " + numeroFila + ", i Seient: " + numeroSeient + ", s'ha alliberat");
     }
-    public void avisEliminacions (String nomPersona){
+    private void avisEliminacions (String nomPersona){
         System.out.println("Les butaques amb reserva a nom de " + nomPersona + ", s'han alliberat");
     }
 }
