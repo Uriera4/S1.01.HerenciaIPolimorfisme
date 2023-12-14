@@ -22,5 +22,4 @@ public class Restaurant {
     public int getPuntuacio (){
         return puntuacio;
     }
-
 }

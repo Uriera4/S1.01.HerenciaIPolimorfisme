@@ -8,7 +8,6 @@ public class Main {
 
         llistaRestaurants.add(new Restaurant ("Abac", 10));
         afegeixSiNoExisteix(new Restaurant("Abac", 5));
-        afegeixSiNoExisteix(new Restaurant("Abac", 5));
         afegeixSiNoExisteix(new Restaurant("Enigma", 10));
         afegeixSiNoExisteix(new Restaurant("Xerta", 9));
         afegeixSiNoExisteix(new Restaurant("Abac", 10)); //NO S'HA AFEGIT
