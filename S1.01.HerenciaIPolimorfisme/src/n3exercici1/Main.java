@@ -369,7 +369,7 @@ public class Main {
         return paraula;
     }
     static boolean llistaRedactorsBuida() {
-        return Main.llistaRedactors.isEmpty();
+        return llistaRedactors.isEmpty();
     }
     static boolean llistaNoticiesBuida(int index) {
         return seleccionaRedactor(index).llistaNoticies.isEmpty();
@@ -380,15 +380,17 @@ public class Main {
         System.out.println("Aplicació de control de noticies i redactors");
     }
     static String menuPrograma() {
-        return "\n MENÚ DE L'APLICACIÓ:\n" +
-                "(0). Sortir de l'aplicació\n" +
-                "(1). Introduir redactor\n" +
-                "(2). Eliminar redactor\n" +
-                "(3). Introduir noticia a un redactor\n" +
-                "(4). Eliminar noticia\n" +
-                "(5). Mostrar totes les notícies per redactor\n" +
-                "(6). Calcular puntuació de la notícia\n" +
-                "(7). Calcular preu de la notícia";
+        return """
+
+                 MENÚ DE L'APLICACIÓ:
+                (0). Sortir de l'aplicació
+                (1). Introduir redactor
+                (2). Eliminar redactor
+                (3). Introduir noticia a un redactor
+                (4). Eliminar noticia
+                (5). Mostrar totes les notícies per redactor
+                (6). Calcular puntuació de la notícia
+                (7). Calcular preu de la notícia""";
     }
     static void imprimeixRedactorJaInclos() {
         System.out.println("Aquest redactor ja està inclòs.");
@@ -409,11 +411,14 @@ public class Main {
         System.out.println("\nLa notícia ha estat creada.");
     }
     static String menuTipusNoticies() {
-        return "\nFUTBOL\n" +
-                "BASQUET\n" +
-                "TENIS\n" +
-                "F1\n" +
-                "MOTOCICLISME\n";
+        return """
+
+                FUTBOL
+                BASQUET
+                TENIS
+                F1
+                MOTOCICLISME
+                """;
     }
     static void imprimeixSiNoNoticies() {
         System.out.println("\nAcció no realitzable. Aquest redactor no té cap notícia assignada.");

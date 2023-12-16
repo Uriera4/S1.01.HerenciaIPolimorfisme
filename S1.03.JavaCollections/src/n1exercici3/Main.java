@@ -59,10 +59,10 @@ public class Main {
         }
     }
     static void ompleLlistaPaisosCapitals (BufferedReader arxiuPaisosCapitals) throws IOException {
-        String cadena;
+        String fila;
         String[] pais0capital1;
-        while ((cadena = arxiuPaisosCapitals.readLine()) != null) {
-            pais0capital1 = cadena.split(" ");
+        while ((fila = arxiuPaisosCapitals.readLine()) != null) {
+            pais0capital1 = fila.split(" ");
             llistaPaisosCapitals.put(pais0capital1[0], pais0capital1[1]);
         }
     }
@@ -70,7 +70,7 @@ public class Main {
         try (FileWriter fw = new FileWriter(new File(("C:/Users/urier/Desktop/IT ACADEMY/CURSO ESPECIALIZACION JAVA & SPRING FRAMEWORKS/S1.03.JavaCollections/src/n1exercici3/classificacio.txt")).getAbsoluteFile(), true);
              BufferedReader llegir = new BufferedReader(new FileReader(("C:/Users/urier/Desktop/IT ACADEMY/CURSO ESPECIALIZACION JAVA & SPRING FRAMEWORKS/S1.03.JavaCollections/src/n1exercici3/classificacio.txt")));
              BufferedWriter escriure = new BufferedWriter(fw)) {
-            if ((llegir.readLine()) == null) {
+            if (llegir.readLine() == null) {
                 escriure.write("JUGADOR / PUNTUACIO\n");
             }
             nom = nom.replaceAll(" ", "_");

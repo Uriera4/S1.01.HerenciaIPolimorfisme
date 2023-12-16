@@ -1,6 +1,6 @@
 package n2exercici1;
 
-public class Restaurant {
+public class Restaurant{
 
     final private String nom;
     final private int puntuacio;
