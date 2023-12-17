@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class Principal {
     static ArrayList<Persona> llistaPersones = new ArrayList<>();
+    static String ruta = retornaDirectori();
     public static void main (String[] args) {
         try{
             llegeixArxiuLlistaPersones();
@@ -77,9 +78,8 @@ public class Principal {
 
     //OPCIÓ (1) INTRODUIR PERSONA
     static void opcioIntroduirPersona () {
-        String dni;
         try{
-            dni = demanaDNI();
+            String dni = demanaDNI();
             if (llistaPersones.isEmpty() || !dniRegistrat(dni)){
                 String nom = demanaDada("nom");
                 String cognom = demanaDada("cognom o cognoms");
@@ -242,8 +242,14 @@ public class Principal {
     }
 
     //MÉTODES PER LLEGIR I ESCRIURE TXT
+    static String retornaDirectori (){
+        new File("S1.03.JavaCollections").mkdir();
+        new File("S1.03.JavaCollections/src").mkdir();
+        new File("S1.03.JavaCollections/src/n3exercici1").mkdir();
+        return "S1.03.JavaCollections/src/n3exercici1/";
+    }
     static void llegeixArxiuLlistaPersones() throws IOException {
-        try (FileReader fr = new FileReader("C:/Users/urier/Desktop/IT ACADEMY/CURSO ESPECIALIZACION JAVA & SPRING FRAMEWORKS/S1.03.JavaCollections/src/n3exercici1/llistaPersones.csv");
+        try (FileReader fr = new FileReader((ruta+"llistaPersones.csv"));
              BufferedReader br = new BufferedReader(fr)){
             ompleLlistaPersones(br);
         }
@@ -262,12 +268,10 @@ public class Principal {
         }
     }
     static void guardaArxiuLlistaPersones (String nom, String cognom, String dni) throws IOException{
-        try (FileWriter fw = new FileWriter(new File(("C:/Users/urier/Desktop/IT ACADEMY/CURSO ESPECIALIZACION JAVA & SPRING FRAMEWORKS/S1.03.JavaCollections/src/n3exercici1/llistaPersones.csv")).getAbsoluteFile(), true);
+        try (FileWriter fw = new FileWriter(new File((ruta+"llistaPersones.csv")).getAbsoluteFile(), true);
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter escriure = new PrintWriter (bw)) {
             escriure.println(nom + ";" + cognom + ";" + dni);
-            fw.close();
-            bw.close();
             escriure.flush();
         }
     }

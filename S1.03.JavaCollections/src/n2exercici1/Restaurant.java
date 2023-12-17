@@ -10,12 +10,18 @@ public class Restaurant{
         this.puntuacio = puntuacio;
     }
 
-    public boolean comparaNoms (Restaurant nouRestaurant){
-        return this.nom.equalsIgnoreCase(nouRestaurant.getNom());
+    @Override
+    public boolean equals(Object obj){
+        boolean iguals = false;
+        if (obj instanceof Restaurant){
+            Restaurant restaurant = (Restaurant) obj;
+            if (this.nom == restaurant.nom && this.puntuacio == restaurant.puntuacio){
+                iguals = true;
+            }
+        }
+        return iguals;
     }
-    public boolean comparaPuntuacions (Restaurant nouRestaurant){
-        return this.puntuacio==nouRestaurant.getPuntuacio();
-    }
+
     public String getNom (){
         return nom;
     }

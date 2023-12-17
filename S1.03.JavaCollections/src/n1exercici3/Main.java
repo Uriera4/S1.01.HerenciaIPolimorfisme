@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.Scanner;
 public class Main {
     static HashMap<String, String> llistaPaisosCapitals = new HashMap<>();
+    static String ruta = retornaDirectori();
     public static void main (String[] args) {
         try {
             llegeixArxiuPaisosCapitals();
@@ -52,8 +53,14 @@ public class Main {
     }
 
     //MÉTODES PER LLEGIR I ESCRIURE TXT
+    static String retornaDirectori(){
+        new File("S1.03.JavaCollections").mkdir();
+        new File("S1.03.JavaCollections/src").mkdir();
+        new File("S1.03.JavaCollections/src/n1exercici3").mkdir();
+        return "S1.03.JavaCollections/src/n1exercici3/";
+    }
     static void llegeixArxiuPaisosCapitals() throws IOException {
-        try (FileReader fr = new FileReader("C:/Users/urier/Desktop/IT ACADEMY/CURSO ESPECIALIZACION JAVA & SPRING FRAMEWORKS/S1.03.JavaCollections/src/n1exercici3/countries.txt");
+        try (FileReader fr = new FileReader(ruta + "countries.txt");
              BufferedReader br = new BufferedReader(fr)){
             ompleLlistaPaisosCapitals(br);
         }
@@ -67,8 +74,8 @@ public class Main {
         }
     }
     static void crearModificarArxiu (String nom, byte puntuacio) throws IOException {
-        try (FileWriter fw = new FileWriter(new File(("C:/Users/urier/Desktop/IT ACADEMY/CURSO ESPECIALIZACION JAVA & SPRING FRAMEWORKS/S1.03.JavaCollections/src/n1exercici3/classificacio.txt")).getAbsoluteFile(), true);
-             BufferedReader llegir = new BufferedReader(new FileReader(("C:/Users/urier/Desktop/IT ACADEMY/CURSO ESPECIALIZACION JAVA & SPRING FRAMEWORKS/S1.03.JavaCollections/src/n1exercici3/classificacio.txt")));
+        try (FileWriter fw = new FileWriter(new File(ruta+"classificacio.txt").getAbsoluteFile(), true);
+             BufferedReader llegir = new BufferedReader(new FileReader(ruta+"classificacio.txt"));
              BufferedWriter escriure = new BufferedWriter(fw)) {
             if (llegir.readLine() == null) {
                 escriure.write("JUGADOR / PUNTUACIO\n");

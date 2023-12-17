@@ -22,7 +22,7 @@ public class Main {
     static boolean comprovaSiExisteix (Restaurant nouRestaurant){
         boolean existeix = false;
         for (Restaurant restaurant : llistaRestaurants){
-            if ((restaurant.comparaNoms(nouRestaurant)) && restaurant.comparaPuntuacions(nouRestaurant)){
+            if (restaurant.equals(nouRestaurant)){
                 existeix = true;
             }
         }
