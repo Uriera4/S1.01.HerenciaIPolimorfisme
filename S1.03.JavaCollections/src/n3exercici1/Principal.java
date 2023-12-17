@@ -266,6 +266,8 @@ public class Principal {
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter escriure = new PrintWriter (bw)) {
             escriure.println(nom + ";" + cognom + ";" + dni);
+            fw.close();
+            bw.close();
             escriure.flush();
         }
     }
