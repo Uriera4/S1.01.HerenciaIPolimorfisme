@@ -1,7 +1,6 @@
 package n1exercici1;
 
 public class Mes {
-
     private final String nom;
 
     public Mes (int posicio){
@@ -15,6 +14,4 @@ public class Mes {
     public String getNom() {
         return nom;
     }
-
-
 }

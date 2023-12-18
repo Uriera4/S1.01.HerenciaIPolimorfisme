@@ -1,12 +1,12 @@
 package n1exercici2;
 
-public class CalculoDni {
+public class CalculDni {
 
     private final int numerosDNI;
     private final char lletraDNI;
     private final String dni;
 
-    public CalculoDni (String dni){
+    public CalculDni (String dni){
         numerosDNI = Integer.parseInt(dni.substring(0,8));
         lletraDNI = retornaLletraDNI();
         this.dni= String.valueOf(numerosDNI)+lletraDNI;
@@ -20,6 +20,5 @@ public class CalculoDni {
     public String getDni() {
         return dni;
     }
-    public int getNumerosDNI(){return numerosDNI;}
-    public char getLletraDNI(){return lletraDNI;}
+
 }
