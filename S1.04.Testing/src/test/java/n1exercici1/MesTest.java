@@ -1,6 +1,5 @@
 package n1exercici1;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import java.util.TreeMap;
