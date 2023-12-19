@@ -1,6 +1,0 @@
-JUGADOR / PUNTUACIO
-Uriera / 10
-Oriol_Riera / 1
-Oriol / 2
-G / 0
-Riera / 3
