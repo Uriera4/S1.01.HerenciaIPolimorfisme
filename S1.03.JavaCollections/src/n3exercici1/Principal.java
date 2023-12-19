@@ -243,13 +243,10 @@ public class Principal {
 
     //MÉTODES PER LLEGIR I ESCRIURE TXT
     static String retornaDirectori (){
-        new File("S1.03.JavaCollections").mkdir();
-        new File("S1.03.JavaCollections/src").mkdir();
-        new File("S1.03.JavaCollections/src/n3exercici1").mkdir();
-        return "S1.03.JavaCollections/src/n3exercici1/";
+        return demanaString("Introdueix la ruta on està l'arxiu llistaPerones.csv: ");
     }
     static void llegeixArxiuLlistaPersones() throws IOException {
-        try (FileReader fr = new FileReader((ruta+"llistaPersones.csv"));
+        try (FileReader fr = new FileReader((ruta+"/llistaPersones.csv"));
              BufferedReader br = new BufferedReader(fr)){
             ompleLlistaPersones(br);
         }
@@ -268,7 +265,7 @@ public class Principal {
         }
     }
     static void guardaArxiuLlistaPersones (String nom, String cognom, String dni) throws IOException{
-        try (FileWriter fw = new FileWriter(new File((ruta+"llistaPersones.csv")).getAbsoluteFile(), true);
+        try (FileWriter fw = new FileWriter(new File((ruta+"/llistaPersones.csv")).getAbsoluteFile(), true);
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter escriure = new PrintWriter (bw)) {
             escriure.println(nom + ";" + cognom + ";" + dni);
