@@ -9,10 +9,10 @@ public class Venda {
 
     public Venda (){
         colleccioProductes = new ArrayList<>();
-        preuTotalVenda = 0;
     }
 
     public float calcularTotal () throws VendaBuidaException, IndexOutOfBoundsException{
+        preuTotalVenda = 0;
         if (colleccioProductes.isEmpty()){
             throw new VendaBuidaException("\nPer fer una venda primer has d'afegir productes");
         } else {

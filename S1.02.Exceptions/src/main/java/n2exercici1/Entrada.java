@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 public class Entrada {
     static Scanner input = new Scanner (System.in);
-    public static byte llegirByte (String missatge) throws InputMismatchException{
+    public static byte llegirByte (String missatge) {
         byte numero = 0;
         boolean correcte = false;
         do{
@@ -19,7 +19,7 @@ public class Entrada {
         } while (!correcte);
         return numero;
     }
-    public static int llegirInt (String missatge) throws InputMismatchException{
+    public static int llegirInt (String missatge) {
         int numero = 0;
         boolean correcte = false;
         do{
@@ -34,7 +34,7 @@ public class Entrada {
         } while (!correcte);
         return numero;
     }
-    public static float llegirFloat (String missatge) throws InputMismatchException{
+    public static float llegirFloat (String missatge) {
         float numero = 0F;
         boolean correcte = false;
         do{
@@ -49,7 +49,7 @@ public class Entrada {
         } while (!correcte);
         return numero;
     }
-    public static double llegirDouble (String missatge) throws InputMismatchException{
+    public static double llegirDouble (String missatge) {
         double numero = 0;
         boolean correcte = false;
         do{
