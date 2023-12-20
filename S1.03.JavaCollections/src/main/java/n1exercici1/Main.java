@@ -15,7 +15,7 @@ public class Main {
 
         ompleLlistaMesosArrayList();
         System.out.println(llistaMesosArrayList);           //LLISTA AMB ELS 11 ELEMENTS
-        llistaMesosArrayList.add(6, agost);
+        llistaMesosArrayList.add(7, agost);
         System.out.println(llistaMesosArrayList);           //LLISTA AMB ELS 12 ELEMENTS ORDENATS PER VALOR
 
         llistaMesosHashSet.addAll(llistaMesosArrayList);
@@ -36,6 +36,7 @@ public class Main {
         llistaMesosArrayList.add(new Month("Febrer"));
         llistaMesosArrayList.add(new Month("Març"));
         llistaMesosArrayList.add(new Month("Abril"));
+        llistaMesosArrayList.add(new Month("Maig"));
         llistaMesosArrayList.add(new Month("Juny"));
         llistaMesosArrayList.add(new Month("Juliol"));
         llistaMesosArrayList.add(new Month("Setembre"));
