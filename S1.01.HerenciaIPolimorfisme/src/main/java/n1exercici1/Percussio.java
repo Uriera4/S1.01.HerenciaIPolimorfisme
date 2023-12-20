@@ -9,3 +9,4 @@ public class Percussio extends Instrument{
         System.out.println("Està sonant un instrument de percussió");
     }
 }
+
