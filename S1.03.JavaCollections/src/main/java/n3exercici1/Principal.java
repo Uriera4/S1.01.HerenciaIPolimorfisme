@@ -7,14 +7,11 @@ import java.util.Scanner;
 
 public class Principal {
     static ArrayList<Persona> llistaPersones = new ArrayList<>();
-    static String ruta = retornaDirectori();
     public static void main (String[] args) {
-        try{
-            llegeixArxiuLlistaPersones();
+        llegeixArxiuLlistaPersones();
+        if (llistaPersones!=null){
             titolPrograma();
             accionaPrograma();
-        } catch (IOException e){
-            System.out.println("Error. No es troben els arxius del programa");
         }
     }
 
@@ -85,14 +82,11 @@ public class Principal {
                 String cognom = demanaDada("cognom o cognoms");
                 llistaPersones.add(new Persona(nom, cognom, dni));
                 guardaArxiuLlistaPersones(nom, cognom, dni);
-                avisPersonaInclosa();
             } else {
                 System.out.println("Aquest DNI ja està registrat");
             }
         } catch (ExcepcioNoIntroduit e){
             System.out.println(e.getMessage());
-        } catch (IOException e) {
-            System.out.println("Error. No es troben els arxius del programa");
         }
     }
     static String demanaDNI () throws ExcepcioNoIntroduit {
@@ -100,12 +94,10 @@ public class Principal {
         boolean continuar;
         do{
             dni = demanaString("\nIndiqui el DNI del redactor a incorporar: ");
-            try {
-                validaDNI(dni);
+            dni = validaDNI(dni);
+            if (dni!=null){
                 continuar = false;
-            } catch (ExcepcioDNIincorrecte e){
-                System.out.println(e.getMessage());
-                dni = null;
+            } else {
                 continuar = introduirAltreDNI();
             }
         } while (continuar);
@@ -114,19 +106,21 @@ public class Principal {
         }
         return dni;
     }
-    static void validaDNI (String dni) throws ExcepcioDNIincorrecte {
-        if (dni.length()!=9 || !Character.isLetter(dni.charAt(8))) {
-            throw new ExcepcioDNIincorrecte("El DNI introduït no és correcte");
-        } else {
-            try {
+    static String validaDNI (String dni) {
+        try{
+            if (dni.length()!=9 || !Character.isLetter(dni.charAt(8))) {
+                throw new ExcepcioDNIincorrecte();
+            } else {
                 int numeros = Integer.parseInt(dni.substring(0,8));
                 if (!(lletraDNI(numeros).equalsIgnoreCase(dni.substring(8)))){
-                    throw new ExcepcioDNIincorrecte("El DNI introduït no és correcte");
+                    throw new ExcepcioDNIincorrecte();
                 }
-            } catch (NumberFormatException e) {
-                throw new ExcepcioDNIincorrecte("El DNI introduït no és correcte");
             }
+        } catch (NumberFormatException | ExcepcioDNIincorrecte e ){
+            System.out.println("El DNI introduït no és correcte");
+            dni = null;
         }
+        return dni;
     }
     static String lletraDNI(int numerosDNI){
         String[] lletresDNI = {"T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"};
@@ -242,13 +236,13 @@ public class Principal {
     }
 
     //MÉTODES PER LLEGIR I ESCRIURE TXT
-    static String retornaDirectori (){
-        return demanaString("Introdueix la ruta on està l'arxiu llistaPerones.csv: ");
-    }
-    static void llegeixArxiuLlistaPersones() throws IOException {
-        try (FileReader fr = new FileReader((ruta+"/llistaPersones.csv"));
+    static void llegeixArxiuLlistaPersones() {
+        try (FileReader fr = new FileReader(("src/main/java/n3exercici1/llistaPersones.csv"));
              BufferedReader br = new BufferedReader(fr)){
             ompleLlistaPersones(br);
+        } catch (IOException e) {
+            System.out.println("No es pot iniciar l'aplicació. No es poden trobar els arxius del programa");
+            llistaPersones = null;
         }
     }
     static void ompleLlistaPersones (BufferedReader arxiuLlistaPersones) throws IOException {
@@ -264,12 +258,15 @@ public class Principal {
             }
         }
     }
-    static void guardaArxiuLlistaPersones (String nom, String cognom, String dni) throws IOException{
-        try (FileWriter fw = new FileWriter(new File((ruta+"/llistaPersones.csv")).getAbsoluteFile(), true);
+    static void guardaArxiuLlistaPersones (String nom, String cognom, String dni) {
+        try (FileWriter fw = new FileWriter(new File(("src/main/java/n3exercici1/llistaPersones.csv")).getAbsoluteFile(), true);
              BufferedWriter bw = new BufferedWriter(fw);
              PrintWriter escriure = new PrintWriter (bw)) {
             escriure.println(nom + ";" + cognom + ";" + dni);
             escriure.flush();
+            avisPersonaInclosa();
+        } catch (IOException e){
+            System.out.println("Ho lamentem. No s'ha pogut registrar la partida. No s'ha trobat l'arxiu de guardat");
         }
     }
 
