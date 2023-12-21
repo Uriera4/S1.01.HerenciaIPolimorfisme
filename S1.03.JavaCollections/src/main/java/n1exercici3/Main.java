@@ -7,8 +7,8 @@ import java.util.Scanner;
 public class Main {
     static HashMap<String, String> llistaPaisosCapitals = new HashMap<>();
     public static void main (String[] args) {
-        try {
-            llegeixArxiuPaisosCapitals();
+        llegeixArxiuPaisosCapitals();
+        if (llistaPaisosCapitals!=null){
             imprimeixTitolPrograma();
             String nom = demanaNomUsuari();
             byte respostes = 0;
@@ -18,8 +18,6 @@ public class Main {
                 respostes++;
             } while (respostes!=10);
             crearModificarArxiu(nom, puntuacio);
-        } catch (IOException e) {
-            System.out.println("No es pot iniciar l'aplicació. No es poden trobar els arxius del programa");
         }
     }
 
@@ -52,10 +50,14 @@ public class Main {
     }
 
     //MÉTODES PER LLEGIR I ESCRIURE TXT
-    static void llegeixArxiuPaisosCapitals() throws IOException {
-        try (FileReader fr = new FileReader("src/main/java/n1exercici3/countries.txt");
-             BufferedReader br = new BufferedReader(fr)){
+    static void llegeixArxiuPaisosCapitals()  {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("src/main/java/n1exercici3/countries.txt"));
             ompleLlistaPaisosCapitals(br);
+            br.close();
+        } catch (IOException e) {
+            System.out.println("No es pot iniciar l'aplicació. No es poden trobar els arxius del programa");
+            llistaPaisosCapitals = null;
         }
     }
     static void ompleLlistaPaisosCapitals (BufferedReader arxiuPaisosCapitals) throws IOException {
@@ -65,8 +67,9 @@ public class Main {
             pais0capital1 = fila.split(" ");
             llistaPaisosCapitals.put(pais0capital1[0], pais0capital1[1]);
         }
+        arxiuPaisosCapitals.close();
     }
-    static void crearModificarArxiu (String nom, byte puntuacio) throws IOException {
+    static void crearModificarArxiu (String nom, byte puntuacio)  {
         try (FileWriter fw = new FileWriter(new File("src/main/java/n1exercici3/classificacio.txt").getAbsoluteFile(), true);
              BufferedReader llegir = new BufferedReader(new FileReader("src/main/java/n1exercici3/countries.txt"));
              BufferedWriter escriure = new BufferedWriter(fw)) {
@@ -75,7 +78,7 @@ public class Main {
             }
             nom = nom.replaceAll(" ", "_");
             escriure.write(nom + " / " + puntuacio + "\n");
-        } catch (Exception e){
+        } catch (IOException e){
             System.out.println("Ho lamentem. No s'ha pogut registrar la partida. Error en l'assignació de la ruta de l'arxiu de guardat");
         }
     }
