@@ -9,68 +9,68 @@ public class Principal {
     static ArrayList<Persona> llistaPersones = new ArrayList<>();
     public static void main (String[] args) {
         llegeixArxiuLlistaPersones();
-        if (llistaPersones!=null){
-            titolPrograma();
-            accionaPrograma();
-        }
+        accionaPrograma();
     }
 
     //COMENÇA EL PROGRAMA
     static void accionaPrograma (){
-        int opcioMenu;
-        do {
-            opcioMenu = demanaOpcioMenu();
-            switch (opcioMenu) {
-                case 1:
-                    opcioIntroduirPersona();
-                    break;
-                case 2:
-                    if (llistaPersones.isEmpty()) {
-                        imprimeixLluistaBuida();
-                    } else {
-                        opcioOrdenarLlistaNomAZ();
-                    }
-                    break;
-                case 3:
-                    if (llistaPersones.isEmpty()) {
-                        imprimeixLluistaBuida();
-                    } else {
-                        opcioOrdenarLlistaNomZA();
-                    }
-                    break;
-                case 4:
-                    if (llistaPersones.isEmpty()) {
-                        imprimeixLluistaBuida();
-                    } else {
-                        opcioOrdenarLlistaCognomAZ();
-                    }
-                    break;
-                case 5:
-                    if (llistaPersones.isEmpty()) {
-                        imprimeixLluistaBuida();
-                    } else {
-                        opcioOrdenarLlistaCognomZA();
-                    }
-                    break;
-                case 6:
-                    if (llistaPersones.isEmpty()) {
-                        imprimeixLluistaBuida();
-                    } else {
-                        opcioOrdenarLlistaDNI19();
-                    }
-                    break;
-                case 7:
-                    if (llistaPersones.isEmpty()) {
-                        imprimeixLluistaBuida();
-                    } else {
-                        opcioOrdenarLlistaDNI91();
-                    }
-                    break;
-                case 0:
-                    opcioSortir();
-                    break;
-            }
-        } while (opcioMenu!=0);
+        if (llistaPersones!=null){
+            titolPrograma();
+            int opcioMenu;
+            do {
+                opcioMenu = demanaOpcioMenu();
+                switch (opcioMenu) {
+                    case 1:
+                        opcioIntroduirPersona();
+                        break;
+                    case 2:
+                        if (llistaPersones.isEmpty()) {
+                            imprimeixLluistaBuida();
+                        } else {
+                            opcioOrdenarLlistaNomAZ();
+                        }
+                        break;
+                    case 3:
+                        if (llistaPersones.isEmpty()) {
+                            imprimeixLluistaBuida();
+                        } else {
+                            opcioOrdenarLlistaNomZA();
+                        }
+                        break;
+                    case 4:
+                        if (llistaPersones.isEmpty()) {
+                            imprimeixLluistaBuida();
+                        } else {
+                            opcioOrdenarLlistaCognomAZ();
+                        }
+                        break;
+                    case 5:
+                        if (llistaPersones.isEmpty()) {
+                            imprimeixLluistaBuida();
+                        } else {
+                            opcioOrdenarLlistaCognomZA();
+                        }
+                        break;
+                    case 6:
+                        if (llistaPersones.isEmpty()) {
+                            imprimeixLluistaBuida();
+                        } else {
+                            opcioOrdenarLlistaDNI19();
+                        }
+                        break;
+                    case 7:
+                        if (llistaPersones.isEmpty()) {
+                            imprimeixLluistaBuida();
+                        } else {
+                            opcioOrdenarLlistaDNI91();
+                        }
+                        break;
+                    case 0:
+                        opcioSortir();
+                        break;
+                }
+            } while (opcioMenu!=0);
+        }
     }
 
     //OPCIÓ (1) INTRODUIR PERSONA
