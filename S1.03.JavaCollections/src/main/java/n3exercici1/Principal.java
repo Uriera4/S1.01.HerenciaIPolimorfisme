@@ -90,14 +90,14 @@ public class Principal {
         }
     }
     static String demanaDNI () throws ExcepcioNoIntroduit {
-        String dni;
+        String dni=null;
         boolean continuar;
         do{
-            dni = demanaString("\nIndiqui el DNI del redactor a incorporar: ");
-            dni = validaDNI(dni);
-            if (dni!=null){
+            try{
+                dni = validaDNI(demanaString("\nIndiqui el DNI del redactor a incorporar: "));
                 continuar = false;
-            } else {
+            } catch (NumberFormatException | ExcepcioDNIincorrecte e ){
+                System.out.println("El DNI introduït no és correcte");
                 continuar = introduirAltreDNI();
             }
         } while (continuar);
@@ -106,19 +106,14 @@ public class Principal {
         }
         return dni;
     }
-    static String validaDNI (String dni) {
-        try{
-            if (dni.length()!=9 || !Character.isLetter(dni.charAt(8))) {
+    static String validaDNI (String dni) throws NumberFormatException, ExcepcioDNIincorrecte{
+        if (dni.length()!=9 || !Character.isLetter(dni.charAt(8))) {
+            throw new ExcepcioDNIincorrecte();
+        } else {
+            int numeros = Integer.parseInt(dni.substring(0,8));
+            if (!(lletraDNI(numeros).equalsIgnoreCase(dni.substring(8)))){
                 throw new ExcepcioDNIincorrecte();
-            } else {
-                int numeros = Integer.parseInt(dni.substring(0,8));
-                if (!(lletraDNI(numeros).equalsIgnoreCase(dni.substring(8)))){
-                    throw new ExcepcioDNIincorrecte();
-                }
             }
-        } catch (NumberFormatException | ExcepcioDNIincorrecte e ){
-            System.out.println("El DNI introduït no és correcte");
-            dni = null;
         }
         return dni;
     }
