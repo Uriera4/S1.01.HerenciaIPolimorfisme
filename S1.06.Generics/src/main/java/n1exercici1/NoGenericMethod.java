@@ -1,35 +1,35 @@
 package n1exercici1;
 
-public class NoGenericMethod <T> {
+public class NoGenericMethod {
 
-    private T t1, t2, t3;
+    private String s1, s2, s3;
 
-    public NoGenericMethod (T t1, T t2, T t3){
-        this.t1 = t1;
-        this.t2 = t2;
-        this.t3 = t3;
+    public NoGenericMethod (String s1, String s2, String s3){
+        this.s1 = s1;
+        this.s2 = s2;
+        this.s3 = s3;
     }
 
-    public void setT1 (T t1){
-        this.t1=t1;
+    public void setS1 (String s1){
+        this.s1=s1;
     }
-    public void setT2 (T t2){
-        this.t2=t2;
+    public void setS2 (String s2){
+        this.s2=s2;
     }
-    public void setT3 (T t3){
-        this.t3=t3;
+    public void setS3 (String t3){
+        this.s3=s3;
     }
-    public T getT1 (){
-        return t1;
+    public String getT1 (){
+        return s1;
     }
-    public T getT2 (){
-        return t2;
+    public String getT2 (){
+        return s2;
     }
-    public T getT3 (){
-        return t3;
+    public String getT3 (){
+        return s3;
     }
     public String toString (){
-        return t1.toString() + " " + t2 + " " +t3;
+        return s1 + " " + s2 + " " +s3;
     }
 
 }
