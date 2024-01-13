@@ -1,14 +1,10 @@
 package n3exercici1;
 
-import javax.crypto.Cipher;
-import javax.crypto.CipherInputStream;
-import javax.crypto.CipherOutputStream;
-import javax.crypto.KeyGenerator;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
+import javax.crypto.*;
+import java.io.*;
+import java.security.InvalidKeyException;
 import java.security.Key;
+import java.security.NoSuchAlgorithmException;
 
 public class EncriptadorAES {
 
@@ -21,8 +17,8 @@ public class EncriptadorAES {
             keyGenerator.init(128);
             clau = keyGenerator.generateKey();
             aes = Cipher.getInstance("AES/ECB/PKCS5Padding");
-        } catch (Exception e){
-            System.out.println("Error al generar la clau d'encriptació.");
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException e){
+            System.out.println("Error al generar la clau d'encriptació: " + e.getMessage());
         }
     }
 
@@ -37,8 +33,8 @@ public class EncriptadorAES {
             }
             fitxer.close();
             escriuEncriptat.close();
-        } catch (Exception e){
-            System.out.println("Error al encriptar els fitxer");
+        } catch (InvalidKeyException | IllegalBlockSizeException | BadPaddingException | IOException e){
+            System.out.println("Error al encriptar els fitxer: " + e.getMessage());
         }
     }
     public void desencriptaFitxer (String ruta, String entrada, String sortida){
@@ -52,8 +48,8 @@ public class EncriptadorAES {
             }
             recuperaEncriptat.close();
             escriuDesencriptat.close();
-        } catch (Exception e){
-            System.out.println("Error al desencriptar els fitxer");
+        } catch (InvalidKeyException | IOException e){
+            System.out.println("Error al desencriptar el fitxer: " + e.getMessage());
         }
     }
 }
