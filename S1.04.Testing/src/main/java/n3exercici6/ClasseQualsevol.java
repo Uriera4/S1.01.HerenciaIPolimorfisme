@@ -11,7 +11,11 @@ public class ClasseQualsevol {
         }
     }
 
-    public int getPosicio (int posicio) throws ArrayIndexOutOfBoundsException{
-        return llista[posicio];
+    public Object getPosicio (int posicio) {
+        try {
+            return llista[posicio];
+        } catch (ArrayIndexOutOfBoundsException e){
+            return e.getMessage();
+        }
     }
 }
