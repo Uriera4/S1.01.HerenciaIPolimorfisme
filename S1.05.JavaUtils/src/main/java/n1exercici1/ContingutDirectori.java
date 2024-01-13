@@ -1,7 +1,10 @@
 package n1exercici1;
 
 import n1exercici2.ElementDirectori;
+import n1exercici3.GuardaResultat;
+import n1exercici4.LlegirFitxer;
 import n1exercici4.Ruta;
+import n1exercici5.Serialitzador;
 import n3exercici1.EncriptadorAES;
 
 import java.io.*;
@@ -45,34 +48,11 @@ public class ContingutDirectori {
             System.out.println(element);
         }
     }
-    public void guardarContingut(String nomFitxerTXT){
-        try {
-            File arxiu = new File (nomFitxerTXT);
-            BufferedWriter escriu = new BufferedWriter(new FileWriter(arxiu+".txt"));
-            escriuLlistaOrdenada(escriu);
-            escriu.close();
-            encriptador.encriptaFitxer(nomFitxerTXT, ".txt", "Encriptat.txt");
-            encriptador.desencriptaFitxer(nomFitxerTXT, "Encriptat.txt", "Desencriptat.txt");
-        } catch (IOException e){
-            System.out.println("Error al intentar guardar les dades.");
-        }
-    }
-    private void escriuLlistaOrdenada (BufferedWriter escriu) throws IOException {
-        for (String element: llistaElements){
-            escriu.write(element + "\n");
-        }
+    public void guardarContingut(String nomFitxerTXT) {
+        GuardaResultat.guardarContingut(nomFitxerTXT, llistaElements);
     }
     public void llegeixArxiuTXT(File ruta){
-        try {
-            BufferedReader llegeix = new BufferedReader(new FileReader(ruta.getAbsoluteFile()));
-            String linea;
-            while ((linea = llegeix.readLine()) != null){
-                System.out.println(linea);
-            }
-            llegeix.close();
-        } catch (IOException e){
-            System.out.println("Error al intentar llegir les dades." + Arrays.toString(e.getStackTrace()));
-        }
+        LlegirFitxer.llegeixArxiuTXT(ruta);
     }
 
     public Ruta getFitxer(){
@@ -86,25 +66,10 @@ public class ContingutDirectori {
     }
 
     public void serialitzaContingut (ArrayList<String> contingut, String rutaSerial) {
-        try {
-            File arxiu = new File (fitxer.getRuta().getAbsolutePath() + rutaSerial);
-            ObjectOutputStream escriureFitxer = new ObjectOutputStream(new FileOutputStream(arxiu));
-            escriureFitxer.writeObject(contingut);
-            escriureFitxer.close();
-            System.out.println("El contingut ha estat serialitzat i guardat en la ruta especificada");
-
-        } catch (IOException e) {
-            System.out.println("Error al serialitzar el contingut");
-            System.out.println(e.getMessage());
-        }
+        Serialitzador.serialitzaContingut(contingut, rutaSerial, fitxer);
     }
     public void deserialitzaContingut (File ruta, String rutaSerial){
-        try (ObjectInputStream recuperaFitxer = new ObjectInputStream(new FileInputStream(ruta.getAbsolutePath() + rutaSerial))){
-            llistaElements = (ArrayList<String>) recuperaFitxer.readObject();
-            System.out.println("El contingut ha estat deserialitzat de la ruta especificada");
-        }catch (IOException | ClassNotFoundException e){
-            System.out.println("Error al desearilitzar el contingut");
-        }
+        llistaElements = Serialitzador.deserialitzaContingut(ruta, rutaSerial);
     }
 
 }
