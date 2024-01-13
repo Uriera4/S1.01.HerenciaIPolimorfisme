@@ -5,12 +5,9 @@ import static org.assertj.core.api.Assertions.*;
 
 class ClasseQualsevolTest {
 
-    @Test
+    @Test()
     public void throwExcepcioQuanToca(){
-        try{
-            assertThat(new ClasseQualsevol(5).getPosicio(5)).isInstanceOf(ArrayIndexOutOfBoundsException.class);
-        } catch (ArrayIndexOutOfBoundsException e){
-            System.out.println(e.getMessage());
-        }
+        int numero = 5;
+        assertThat(new ClasseQualsevol(numero).getPosicio(numero)).isEqualTo("Index " + numero + " out of bounds for length " + numero);
     }
 }
