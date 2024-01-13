@@ -1,6 +1,7 @@
 package n1exercici4;
 
 import n1exercici1.ContingutDirectori;
+import n2exercici1.Parametritzador;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,48 +12,37 @@ import java.util.Scanner;
 
 public class Menu {
 
-    private static Properties propietats = new Properties();
-    private static File file = new File ("");
-    private static boolean parametritzacio = false;
+    private static Parametritzador parametres = new Parametritzador();
 
     public static void accionaMenu(){
-        ContingutDirectori contingut = rutaDirectori();
+        guardaLlistaDirectori();
         int opcioMenu;
         do {
             opcioMenu = demanaOpcioMenu();
             switch (opcioMenu) {
                 case 1:
-                    opcio1(contingut);
+                    opcio1(parametres.getContingut());
                     break;
                 case 2:
-                    opcio2(contingut);
+                    opcio2(parametres.getContingut());
                     break;
                 case 3:
-                    opcio3(contingut);
+                    opcio3(parametres.getContingut());
                     break;
             }
         }while (opcioMenu!=0);
-        serialitzador(contingut);
+        serialitzador(parametres.getContingut());
         System.out.println("Aplicació finalitzada");
     }
-    private static ContingutDirectori rutaDirectori(){
-        ContingutDirectori contingut;
-        try{
-            propietats.load(new FileInputStream("src/main/java/n2exercici1/configuracio.properties"));
-            contingut = new ContingutDirectori(file.getAbsolutePath()+propietats.getProperty("ruta"));
-            parametritzacio = true;
-        } catch (IOException e) {
-            contingut = new ContingutDirectori((new Ruta("Introdueixi la ruta de l'arbre de directoris a mostrar: ")));
-        }
-        contingut.guardaLlistaOrdenada(contingut.getFitxer().getRuta(),"");
-        return contingut;
+    private static void guardaLlistaDirectori(){
+        parametres.getContingut().guardaLlistaOrdenada(parametres.getContingut().getFitxer().getRuta(), "");
     }
     private static void opcio1 (ContingutDirectori contingut){
         contingut.imprimeixLlistaOrdenada();
     }
-    private static void opcio2 (ContingutDirectori contingut){
-        if (parametritzacio){
-            contingut.guardarContingut(file.getAbsolutePath()+propietats.getProperty("nomFitxerTXT"));
+    private static void opcio2 (ContingutDirectori contingut) {
+        if (parametres.getParametritzacio()) {
+            contingut.guardarContingut(parametres.getFile().getAbsolutePath() + parametres.getPropietats().getProperty("nomFitxerTXT"));
         } else {
             contingut.guardarContingut("src/main/java/n1exercici3/contingutDirectori");
         }
