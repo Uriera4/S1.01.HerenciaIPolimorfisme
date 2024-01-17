@@ -13,7 +13,7 @@ public class Treballador {
     }
 
     public void calcularSou(int horesTreballadesMes){
-        System.out.println("El sou es de " + (horesTreballadesMes*preuHora) + "€.");
+        System.out.println("El sou es de " + (horesTreballadesMes*this.preuHora) + "€.");
     }
 
 }

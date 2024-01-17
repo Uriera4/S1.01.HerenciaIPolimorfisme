@@ -2,7 +2,7 @@ package n1exercici1;
 
 public class TreballadorOnline extends Treballador{
 
-    final private int tarifaInternet = 40;
+    private final int TARIFAINTERNET = 40;
 
     public TreballadorOnline(String nom, String cognom, int preuHora) {
         super(nom, cognom, preuHora);
@@ -10,11 +10,11 @@ public class TreballadorOnline extends Treballador{
 
     @Override
     public void calcularSou(int horesTreballadesMes) {
-        System.out.println("El sou es de " + ((horesTreballadesMes*preuHora)+tarifaInternet) + "€.");
+        System.out.println("El sou es de " + ((horesTreballadesMes*this.preuHora)+TARIFAINTERNET) + "€.");
     }
 
     @Deprecated
     public void retornaNom (){
-        System.out.println(nom);
+        System.out.println(this.nom);
     }
 }
