@@ -25,14 +25,13 @@ public class EncriptadorAES {
     public void encriptaFitxer (String ruta, String entrada, String sortida) {
         try{
             aes.init(Cipher.ENCRYPT_MODE, clau);
-            FileInputStream fitxer = new FileInputStream(ruta + entrada);
-            CipherOutputStream escriuEncriptat = new CipherOutputStream(new FileOutputStream(ruta + sortida), aes);
-            byte [] encriptat = aes.doFinal(fitxer.readAllBytes());
-            for (byte b : encriptat){
-                escriuEncriptat.write(b);
+            try (FileInputStream fitxer = new FileInputStream(ruta + entrada);
+                 CipherOutputStream escriuEncriptat = new CipherOutputStream(new FileOutputStream(ruta + sortida), aes)) {
+                byte [] encriptat = aes.doFinal(fitxer.readAllBytes());
+                for (byte b : encriptat){
+                    escriuEncriptat.write(b);
+                }
             }
-            fitxer.close();
-            escriuEncriptat.close();
         } catch (InvalidKeyException | IllegalBlockSizeException | BadPaddingException | IOException e){
             System.out.println("Error al encriptar els fitxer: " + e.getMessage());
         }
@@ -40,14 +39,13 @@ public class EncriptadorAES {
     public void desencriptaFitxer (String ruta, String entrada, String sortida){
         try {
             aes.init(Cipher.DECRYPT_MODE, clau);
-            CipherInputStream recuperaEncriptat = new CipherInputStream(new FileInputStream(ruta + entrada), aes);
-            CipherOutputStream escriuDesencriptat = new CipherOutputStream(new FileOutputStream(ruta + sortida), aes);
-            byte[] desencriptat = recuperaEncriptat.readAllBytes();
-            for (byte b : desencriptat){
-                escriuDesencriptat.write(b);
+            try (CipherInputStream recuperaEncriptat = new CipherInputStream(new FileInputStream(ruta + entrada), aes);
+                 CipherOutputStream escriuDesencriptat = new CipherOutputStream(new FileOutputStream(ruta + sortida), aes)){
+                byte[] desencriptat = recuperaEncriptat.readAllBytes();
+                for (byte b : desencriptat){
+                    escriuDesencriptat.write(b);
+                }
             }
-            recuperaEncriptat.close();
-            escriuDesencriptat.close();
         } catch (InvalidKeyException | IOException e){
             System.out.println("Error al desencriptar el fitxer: " + e.getMessage());
         }
